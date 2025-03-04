@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <title>Student Management System</title>
 </head>
@@ -20,7 +20,7 @@
     </header>
     <div class="container">
         <h2>Students List</h2>
-        <div class="grid-container">
+        <div class="grid-container" id="studentsList">
             <div class="card">
                 <div class="card-header">
                     <img src="https://media.istockphoto.com/id/1090878494/es/foto/retrato-de-joven-sonriente-a-hombre-guapo-en-camiseta-polo-azul-aislado-sobre-fondo-gris-de.jpg?s=612x612&w=0&k=20&c=dHFsDEJSZ1kuSO4wTDAEaGOJEF-HuToZ6Gt-E2odc6U="
@@ -71,6 +71,25 @@
             </div>
         </div>
     </div>
+    <template id="studentCardTemplate">
+        <div class="card">
+            <div class="card-header">
+                <img class="student-image" src="https://media.istockphoto.com/id/1090878494/es/foto/retrato-de-joven-sonriente-a-hombre-guapo-en-camiseta-polo-azul-aislado-sobre-fondo-gris-de.jpg?s=612x612&w=0&k=20&c=dHFsDEJSZ1kuSO4wTDAEaGOJEF-HuToZ6Gt-E2odc6U="
+                    alt="student image">
+                <div class="icons">
+                    <i class="fas fa-edit"></i>
+                    <i class="fas fa-trash"></i>
+                </div>
+            </div>
+            <div class="card-body">
+                <h3 class="student-name" ></h3>
+                <p class="student-id"></p>
+                <p class="student-email"></p>
+                <button class="github-link" type="submit"><i class="fab fa-github"></i> GitHub</button>
+            </div>
+        </div>
+    </template>
+    <script src="js/app.js"></script>
 </body>
 
 </html>
