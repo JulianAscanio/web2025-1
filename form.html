@@ -16,38 +16,39 @@
             <h2>Add New Student</h2>
         </div>
         <div class="form">
-            <form action="">
+            <form id="studentForm">
                 <div class="form-group">
                     <label for="codigo">Student Code (ID)*</label>
-                    <input type="text" id="codigo" name="codigo" placeholder="e.g., S001" required>
+                    <input type="text" id="codigo" placeholder="e.g., S001" required>
                 </div>
                 <div class="form-group">
                     <label for="nombre">Full Name*</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="John Doe" required>
+                    <input type="text" id="nombre" placeholder="John Doe" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="john.doe@example.com" required>
+                    <input type="email" id="email" placeholder="john.doe@example.com" required>
                 </div>
                 <div class="form-group">
                     <label for="url">GitHub Link</label>
-                    <input type="url" id="url" name="url" placeholder="https://github.com/username">
+                    <input type="url" id="url" placeholder="https://github.com/username">
                 </div>
                 <div class="form-group">
                     <label for="imagen">Photo URL</label>
-                    <input type="url" id="imagen" name="imagen" placeholder="https://example.com/image.jpg">
+                    <input type="url" id="imagen" placeholder="https://example.com/image.jpg">
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea id="description" name="description" placeholder="Brief description about the student..."></textarea>
+                    <textarea id="description" placeholder="Brief description about the student..."></textarea>
                 </div>
-                <!-- Botones de acción alineados a la derecha -->
                 <div class="form-actions">
                     <button class="btn btn-cancel" type="button">Cancel</button>
                     <button class="btn btn-save" type="submit">Save Student</button>
                 </div>
-            </form>
+            </form>            
         </div>
     </div>
+    <script src="js/api.js" defer></script>
+    <script src="js/app.js" defer></script>
 </body>
 </html>
