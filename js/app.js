@@ -27,4 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial render
     renderStudents();
 
+    const btnNew = document.getElementById('btnNew');
+    btnNew.addEventListener('click', () => {
+        window.location.href = 'form.html';
+    });
+
 });
