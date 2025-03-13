@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <link rel="stylesheet" href="css/detail.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <button class="btn btn-back" onclick="location.href='index.html'">Back</button>
+    <div class="container" id="student-detail">
+        <div class="profile-card">
+            <div class="profile-header">
+                <img id="student-image" src="https://media.istockphoto.com/id/1090878494/es/foto/retrato-de-joven-sonriente-a-hombre-guapo-en-camiseta-polo-azul-aislado-sobre-fondo-gris-de.jpg?s=612x612&w=0&k=20&c=dHFsDEJSZ1kuSO4wTDAEaGOJEF-HuToZ6Gt-E2odc6U=" alt="Student Avatar" class="avatar">
+                <h2 id="student-name"> </h2>
+                <p id="student-code">ID: </p>
+            </div>
+            <div class="profile-info">
+                <p id="student-email"><i class="fas fa-envelope"></i> Email: <a></a></p>
+                <p id="github-link"><i class="fab fa-github"></i> GitHub: <a href="#">Profile</a></p>
+                <p id="description"><strong>Description:</strong></p>
+                <button class="edit-profile"><i class="fas fa-edit"></i> Edit Profile</button>
+            </div>
+        </div>
+
+        <div class="technologies-section">
+            <h3>Technologies</h3>
+            <button class="add-tech-btn" id="openModal"><i class="fas fa-plus"></i> Add Technology</button>
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>Technology</th>
+                        <th>Name</th>
+                        <th>Level</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tech-list">
+                    <tr>
+                        <td>JavaScript</td>
+                        <td>⭐⭐⭐⭐</td>
+                        <td>
+                            <button class="edit-tech"><i class="fas fa-edit">Edit</i></button>
+                            <button class="delete-tech"><i class="fas fa-trash">Delete</i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-container" id="modal">
+        <div class="modal">
+            <h3>Add Technology</h3>
+            <label for="technology">Technology</label>
+            <select id="technology">
+                <option>Select a technology</option>
+                <option>JavaScript</option>
+                <option>Python</option>
+                <option>React</option>
+                <option>Node.js</option>
+            </select>
+
+            <label>Skill Level (1-5)</label>
+            <div class="star-rating">
+                <span class="star" data-value="1">⭐</span>
+                <span class="star" data-value="2">⭐</span>
+                <span class="star" data-value="3">⭐</span>
+                <span class="star" data-value="4">⭐</span>
+                <span class="star" data-value="5">⭐</span>
+            </div>
+
+            <div class="modal-buttons">
+                <button class="cancel-btn" id="closeModal">Cancel</button>
+                <button class="add-btn">Add Technology</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

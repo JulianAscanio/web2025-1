@@ -1,0 +1,313 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    gap: 40px;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #6c757d;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-back:hover {
+    background-color: #5a6268;
+}
+
+.profile-card {
+    flex: 1;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-header .avatar {
+    width: 140px;
+    height: 130px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.profile-header h2 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+.profile-header p {
+    color: #555;
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+.profile-info {
+    text-align: left;
+}
+
+.profile-info p {
+    color: #555;
+    margin: 15px 0;
+    font-size: 18px;
+}
+
+.profile-info a {
+    color: #3a6092;
+    text-decoration: none;
+}
+
+.profile-info a:hover {
+    text-decoration: underline;
+}
+
+.edit-profile {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3a6092;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.edit-profile:hover {
+    background-color: #2d4463;
+}
+
+.technologies-section {
+    flex: 2;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.technologies-section h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.add-tech-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    background-color: #5b5b5b;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.add-tech-btn:hover {
+    background-color: #999999;
+}
+
+.tech-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tech-table th,
+.tech-table td {
+    padding: 12px; 
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+}
+
+.tech-table th {
+    background-color: #3a6092;
+    color: #fff;
+}
+
+.tech-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.edit-tech,
+.delete-tech {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-tech {
+    background-color: #34ae04;
+    color: #ffffff;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.edit-tech:hover {
+    background-color: #4e9931;
+}
+
+.delete-tech {
+    background-color: #dc3545;
+    color: #fff;
+    font-weight: bold;
+}
+
+.delete-tech:hover {
+    background-color: #c34350;
+}
+
+/* Modal */
+.modal-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.modal label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+.modal select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.star-rating {
+    margin-bottom: 15px;
+}
+
+.star-rating .star {
+    cursor: pointer;
+    font-size: 24px;
+    color: #ccc;
+    transition: color 0.3s ease;
+}
+
+.star-rating .star:hover,
+.star-rating .star.active {
+    color: #ffcc00;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.cancel-btn,
+.add-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-btn {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.cancel-btn:hover {
+    background-color: #5a6268;
+}
+
+.add-btn {
+    background-color: #6b6f6c;
+    color: #fff;
+}
+
+.add-btn:hover {
+    background-color: #737573;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Apila las columnas verticalmente */
+        gap: 20px; /* Espacio entre las secciones */
+    }
+
+    .profile-card,
+    .technologies-section {
+        flex: none; /* Elimina el flex para que ocupen el ancho completo */
+        width: 100%;
+    }
+
+    .profile-header .avatar {
+        width: 100px; /* Tamaño del avatar en móviles */
+        height: 100px;
+    }
+
+    .profile-header h2 {
+        font-size: 22px; /* Tamaño de fuente ajustado para móviles */
+    }
+
+    .profile-info p {
+        font-size: 14px; /* Tamaño de fuente ajustado para móviles */
+    }
+
+    .technologies-section h3 {
+        font-size: 18px; /* Tamaño de fuente ajustado para móviles */
+    }
+
+    .tech-table th,
+    .tech-table td {
+        font-size: 14px; /* Tamaño de fuente ajustado para móviles */
+    }
+}

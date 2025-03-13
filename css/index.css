@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-    background-color: #c8c8c8; /* Fondo claro */
+    background-color: #c8c8c8;
     color: #333;
     line-height: 1.6;
 }
@@ -91,6 +91,22 @@ nav button:hover {
 }
 
 .btn-edit{
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 30px;
+    background-color: #ffffff97;
+}
+
+.btn-profile{
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 30px;
+    background-color: #ffffff97;
+}
+
+.btn-resume{
     width: 30px;
     height: 30px;
     border: none;
