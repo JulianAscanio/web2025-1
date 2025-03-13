@@ -35,7 +35,7 @@ nav h1 {
 }
 
 nav button {
-    background-color: #668dc0; /* Verde azulado */
+    background-color: #668dc0;
     color: #ffffff;
     border: none;
     padding: 10px 20px;
@@ -90,7 +90,16 @@ nav button:hover {
     object-fit: cover;
 }
 
+.btn-edit{
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 30px;
+    background-color: #ffffff97;
+}
+
 .card-header .icons {
+    border: none;
     position: absolute;
     top: 10px;
     right: 10px;
@@ -99,13 +108,15 @@ nav button:hover {
 }
 
 .card-header .icons i {
-    color: #000000; /* Iconos blancos */
+    color: #000000;
     cursor: pointer;
     transition: color 0.3s ease;
+    background-color: #ffffff00;
+    border-radius: 5px;
 }
 
 .card-header .icons i:hover {
-    color: #3f6faa; /* Verde azulado al hacer hover */
+    color: #ffffff;
 }
 
 .card-body {

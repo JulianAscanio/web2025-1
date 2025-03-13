@@ -1,12 +1,25 @@
+/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
-    background-color: #c8c8c8;
+    background-color: #f4f4f4;
     margin: 0;
-    padding: 20px;
+    padding: 0;
 }
 
+/* Contenedor principal */
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Estilos para el botón de regresar */
 .btn-back {
-    position: absolute; 
+    position: absolute;
     top: 20px;
     left: 20px;
     padding: 10px 20px;
@@ -23,32 +36,20 @@ body {
     background-color: #5a6268;
 }
 
-.container {
-    max-width: 600px;
-    margin: 50px auto; 
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.header {
-    text-align: left;
+/* Estilos para el encabezado */
+h2 {
+    color: #333;
     margin-bottom: 20px;
 }
 
-h2 {
-    color: #333;
-}
-
 /* Estilos para el formulario */
-.form {
+#edit-student-form {
     display: flex;
     flex-direction: column;
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .form-group label {
@@ -62,7 +63,7 @@ h2 {
 .form-group input[type="email"],
 .form-group input[type="url"],
 .form-group textarea {
-    width: calc(100% - 22px); /* Ajuste para evitar desbordamiento */
+    width: calc(100% - 22px);
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -74,11 +75,18 @@ h2 {
     height: 100px;
 }
 
+/* Placeholder styling */
+input::placeholder,
+textarea::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
 /* Botones de acción alineados a la derecha */
 .form-actions {
     display: flex;
-    justify-content: flex-end; /* Alineación a la derecha */
-    gap: 10px; /* Espacio entre botones */
+    justify-content: flex-end;
+    gap: 10px;
     margin-top: 20px;
 }
 

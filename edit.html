@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+    <link rel="stylesheet" href="css/edit.css">
+</head>
+
+<body>
+    <button class="btn btn-back" onclick="location.href='index.html'">Back</button>
+    <div class="container">
+        <h2>Edit Student</h2>
+        <form id="edit-student-form">
+            <div class="form-group">
+                <label for="student-code">Student Code (ID)*</label>
+                <input type="text" id="student-code" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="full-name">Full Name*</label>
+                <input type="text" id="full-name">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email">
+            </div>
+
+            <div class="form-group">
+                <label for="github">GitHub Link</label>
+                <input type="url" id="github-link">
+            </div>
+
+            <div class="form-group">
+                <label for="photo">Photo URL</label>
+                <input type="url" id="photo" >
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description"></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-cancel" type="button">Cancel</button>
+                <button class="btn btn-save" type="submit">Save Student</button>
+            </div>
+        </form>
+    </div>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
