@@ -1,19 +1,19 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const params = new URLSearchParams(window.location.search);
     const studentCode = params.get('id');
-    
+
     if (document.getElementById('studentsList')) {
         await renderStudents();
     }
-    
+
     if (document.getElementById('studentForm')) {
         setupStudentForm();
     }
-    
+
     if (document.getElementById('edit-student-form')) {
         await setupEditForm(studentCode);
     }
-    
+
     if (document.getElementById('student-detail')) {
         await setupStudentDetail(studentCode);
     }
@@ -123,77 +123,14 @@ async function setupStudentDetail(studentCode) {
     }
 
     await loadTechnologies(studentCode);
-    setupTechnologyModal(studentCode);
 }
-
-document.addEventListener('DOMContentLoaded', async () => {
-    try {
-        const studentDetail = document.getElementById('student-detail');
-        if (studentDetail) {
-            const params = new URLSearchParams(window.location.search);
-            const studentCode = params.get('id');
-
-            if (studentCode) {
-                try {
-                    const studentData = await api.getStudentByCode(studentCode);
-                    document.getElementById('student-name').textContent = studentData.name;
-                    document.getElementById('student-code').textContent = `ID: ${studentData.code}`;
-                    document.getElementById('student-email').textContent = studentData.email;
-                    document.getElementById('student-image').src = studentData.photo || '';
-                    document.getElementById('description').textContent = studentData.description || '';
-                    document.getElementById('github-link').href = studentData.github_link ? `https://github.com/${studentData.github_link}` : '#';
-
-                    // Cargar tecnologías
-                    await loadTechnologies(studentCode);
-                } catch (error) {
-                    console.error('Error obteniendo datos del estudiante:', error);
-                }
-            }
-        }
-    } catch (error) {
-        console.log('No estamos en la página de detalles del estudiante');
-    }
-});
-
-// Función para cargar las tecnologías del estudiante
-document.addEventListener('DOMContentLoaded', async () => {
-    try {
-        const studentDetail = document.getElementById('student-detail');
-        if (studentDetail) {
-            const params = new URLSearchParams(window.location.search);
-            const studentCode = params.get('id');
-            console.log("Código del estudiante:", studentCode); // Debug
-
-            if (studentCode) {
-                try {
-                    const studentData = await api.getStudentByCode(studentCode);
-                    document.getElementById('student-name').textContent = studentData.name;
-                    document.getElementById('student-code').textContent = `ID: ${studentData.code}`;
-                    document.getElementById('student-email').textContent = studentData.email;
-                    document.getElementById('student-image').src = studentData.photo || '';
-                    document.getElementById('description').textContent = studentData.description || '';
-                    document.getElementById('github-link').href = studentData.github_link ? `https://github.com/${studentData.github_link}` : '#';
-
-                    // Cargar tecnologías
-                    await loadTechnologies(studentCode);
-                } catch (error) {
-                    console.error('Error obteniendo datos del estudiante:', error);
-                }
-            }
-        }
-    } catch (error) {
-        console.log('No estamos en la página de detalles del estudiante');
-    }
-});
 
 async function loadTechnologies(studentCode) {
     try {
         const techList = document.getElementById('tech-list');
-        techList.innerHTML = ''; // Limpiar la tabla antes de cargar
+        techList.innerHTML = '';
 
         const technologies = await api.getStudentTechnologies(studentCode);
-        console.log("Tecnologías del estudiante:", technologies); // Debug
-
         if (!technologies || technologies.length === 0) {
             techList.innerHTML = '<tr><td colspan="4">No hay tecnologías registradas</td></tr>';
             return;
@@ -208,33 +145,57 @@ async function loadTechnologies(studentCode) {
                 <td>${technology.name}</td>
                 <td>${'⭐'.repeat(level)}</td>
                 <td>
-                    <button class="edit-tech" data-tech="${technology_code}">Edit</button>
-                    <button class="delete-tech" data-tech="${technology_code}">Delete</button>
+                    <button class="edit-tech" data-tech="${technology_code}">✏️ Edit</button>
+                    <button class="delete-tech" data-tech="${technology_code}">🗑️ Delete</button>
                 </td>
             `;
             techList.appendChild(row);
         });
 
         document.querySelectorAll('.edit-tech').forEach(button => {
-            button.addEventListener('click', (event) => {
-                const techCode = event.target.dataset.tech;
-                editTechnology(studentCode, techCode);
-            });
+            button.removeEventListener('click', editTechHandler);
+            button.addEventListener('click', editTechHandler);
         });
 
         document.querySelectorAll('.delete-tech').forEach(button => {
-            button.addEventListener('click', async (event) => {
-                const techCode = event.target.dataset.tech;
-                await deleteTechnology(studentCode, techCode);
-            });
+            button.removeEventListener('click', deleteTechHandler);
+            button.addEventListener('click', deleteTechHandler);
         });
-
     } catch (error) {
         console.error('Error cargando tecnologías:', error);
     }
 }
 
-// Funciones para agregar, editar y eliminar tecnologías
+function editTechHandler(event) {
+    const studentCode = new URLSearchParams(window.location.search).get('id');
+    const techCode = event.target.dataset.tech;
+    editTechnology(studentCode, techCode);
+}
+
+async function deleteTechHandler(event) {
+    const studentCode = new URLSearchParams(window.location.search).get('id');
+    const techCode = event.target.dataset.tech;
+    await deleteTechnology(studentCode, techCode);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const openModalBtn = document.getElementById('openModal');
+
+    if (openModalBtn) {
+        openModalBtn.addEventListener('click', () => {
+            const modal = document.getElementById('modal');
+            if (modal) {
+                modal.classList.remove('hidden'); // Mostrar el modal
+            } else {
+                console.error("El modal de agregar tecnología no fue encontrado.");
+            }
+        });
+    } else {
+        console.warn("Botón 'Agregar Tecnología' no encontrado en esta página.");
+    }
+});
+
+
 async function editTechnology(studentCode, technologyCode) {
     const newLevel = prompt("Ingrese nuevo nivel (1-5):");
     if (newLevel >= 1 && newLevel <= 5) {
