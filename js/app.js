@@ -17,6 +17,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (document.getElementById('student-detail')) {
         await setupStudentDetail(studentCode);
     }
+
+    if (document.getElementById('profile-student')) {
+        await setupStudentDetail(studentCode);
+    }
 });
 
 async function renderStudents() {
@@ -32,7 +36,7 @@ async function renderStudents() {
             clone.querySelector('.student-id').textContent = `ID: ${student.code}`;
             clone.querySelector('.student-email').textContent = student.email;
             clone.querySelector('.student-image').src = student.photo;
-            clone.querySelector('.github-link').href = student.github_link ? `https://github.com/${student.github_link}` : '#';
+            clone.querySelector('.github-link').href = `https://github.com/${student.github}`;
 
             clone.querySelector('.btn-edit').addEventListener('click', () => {
                 window.location.href = `edit.html?id=${student.code}`;
@@ -40,6 +44,10 @@ async function renderStudents() {
 
             clone.querySelector('.btn-profile').addEventListener('click', () => {
                 window.location.href = `detail.html?id=${student.code}`;
+            });
+
+            clone.querySelector('.btn-resume').addEventListener('click', () => {
+                window.location.href = `resume.html?id=${student.code}`;
             });
 
             studentsList.appendChild(clone);
@@ -136,7 +144,7 @@ async function setupStudentDetail(studentCode) {
             document.getElementById('student-email').textContent = studentData.email;
             document.getElementById('student-image').src = studentData.photo;
             document.getElementById('description').textContent = studentData.description;
-            document.getElementById('github-link').href = studentData.github_link ? `https://github.com/${studentData.github_link}` : '#';
+            document.getElementById('github-link').href = studentData.github_link ? `${studentData.github_link}` : '#';
         }
     } catch (error) {
         console.error('Error obteniendo datos del estudiante para detalles:', error);
@@ -229,5 +237,21 @@ async function deleteTechnology(studentCode, technologyCode) {
         } catch (error) {
             console.error('Error eliminando tecnología:', error);
         }
+    }
+}
+
+async function setupStudent(studentCode) {
+    try {
+        const studentData = await api.getStudentTechnologies(studentCode);
+        if (studentData) {
+            document.getElementById('student-name').textContent = studentData.name;
+            document.getElementById('student-code').textContent = `Id: ${studentData.code}`;
+            document.getElementById('student-email').textContent = studentData.email;
+            document.getElementById('student-image').src = studentData.photo;
+            document.getElementById('description').textContent = studentData.description;
+            document.getElementById('github-link').href = studentData.github_link ? `${studentData.github_link}` : '#';
+        }
+    } catch (error) {
+        console.error('Error obteniendo datos del estudiante para detalles:', error);
     }
 }
