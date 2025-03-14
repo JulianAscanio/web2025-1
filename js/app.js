@@ -132,7 +132,7 @@ async function setupStudentDetail(studentCode) {
         const studentData = await api.getStudentByCode(studentCode);
         if (studentData) {
             document.getElementById('student-name').textContent = studentData.name;
-            document.getElementById('student-code').textContent = `ID: ${studentData.code}`;
+            document.getElementById('student-code').textContent = `Id: ${studentData.code}`;
             document.getElementById('student-email').textContent = studentData.email;
             document.getElementById('student-image').src = studentData.photo;
             document.getElementById('description').textContent = studentData.description;
@@ -198,23 +198,12 @@ async function deleteTechHandler(event) {
     await deleteTechnology(studentCode, techCode);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const openModalBtn = document.getElementById('openModal');
-
-    if (openModalBtn) {
-        openModalBtn.addEventListener('click', () => {
-            const modal = document.getElementById('modal');
-            if (modal) {
-                modal.classList.remove('hidden'); // Mostrar el modal
-            } else {
-                console.error("El modal de agregar tecnología no fue encontrado.");
-            }
-        });
-    } else {
-        console.warn("Botón 'Agregar Tecnología' no encontrado en esta página.");
-    }
+document.getElementById("openModal").addEventListener("click", function () {
+    document.getElementById("modal").style.display = "flex";
 });
-
+document.getElementById("closeModal").addEventListener("click", function () {
+    document.getElementById("modal").style.display = "none";
+});
 
 async function editTechnology(studentCode, technologyCode) {
     const newLevel = prompt("Ingrese nuevo nivel (1-5):");
