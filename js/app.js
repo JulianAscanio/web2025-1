@@ -49,6 +49,13 @@ async function renderStudents() {
     }
 }
 
+const btnNew = document.getElementById('btnNew');
+if (btnNew) {
+    btnNew.addEventListener('click', () => {
+        window.location.href = 'form.html';
+    });
+}
+
 async function setupStudentForm() {
     document.getElementById('studentForm').addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -69,6 +76,12 @@ async function setupStudentForm() {
             alert('Fallo al agregar el estudiante.');
         }
     });
+    const btnCancel = document.querySelector('.btn-cancel');
+    if (btnCancel) {
+        btnCancel.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    }
 }
 
 async function setupEditForm(studentCode) {
@@ -105,6 +118,13 @@ async function setupEditForm(studentCode) {
             alert('Fallo al actualizar el estudiante.');
         }
     });
+
+    const btnCancel = document.querySelector('.btn-cancel');
+    if (btnCancel) {
+        btnCancel.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    }
 }
 
 async function setupStudentDetail(studentCode) {
@@ -145,8 +165,8 @@ async function loadTechnologies(studentCode) {
                 <td>${technology.name}</td>
                 <td>${'⭐'.repeat(level)}</td>
                 <td>
-                    <button class="edit-tech" data-tech="${technology_code}">✏️ Edit</button>
-                    <button class="delete-tech" data-tech="${technology_code}">🗑️ Delete</button>
+                    <button class="edit-tech" data-tech="${technology_code}">Edit</button>
+                    <button class="delete-tech" data-tech="${technology_code}">Delete</button>
                 </td>
             `;
             techList.appendChild(row);
