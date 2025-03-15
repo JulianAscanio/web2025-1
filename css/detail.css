@@ -230,7 +230,7 @@ body {
 }
 
 .star-rating {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .star-rating .star {
@@ -242,7 +242,7 @@ body {
 
 .star-rating .star:hover,
 .star-rating .star.active {
-    color: #ffcc00;
+    color: #000000;
 }
 
 .modal-buttons {
