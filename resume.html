@@ -3,29 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile studentd</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Profile Student</title>
+    <link rel="stylesheet" href="css/resume.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <button class="btn btn-back" onclick="location.href='index.html'">Back</button>
+    <button class="btn btn-back" onclick="location.href='index.html'"><i class="fas fa-arrow-left"></i> Back</button>
     <div class="container" id="profile-student">
         <header class="head">
-            <img id="student-image" src="" alt="">
+            <img id="student-image" src="https://via.placeholder.com/150" alt="Student Avatar">
             <h1 id="student-name"></h1>
-            <p id="student-code" ></p>
-            <button id="github-link" type="button">GitHub</button>
-            <p id="student-email" ></p>
+            <p id="student-code">ID: </p>
+            <button id="github-link" type="button"><i class="fab fa-github"></i> GitHub</button>
+            <p id="student-email"><i class="fas fa-envelope"></i></p>
         </header>
-        <div class="info-student" >
-            <h3>About</h3>
-            <p id="description" ></p>
+        <div class="info-student">
+            <h3 >About</h3>
+            <p id="description"></p>
             <h3>Technical Skills</h3>
-            <div id="tech-list"></div>
+            <div id="tech-list">
+                <div class="tech-item">
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
             <div id="foot">
                 <h4 id="student-name"></h4>
                 <p id="student-code">Student ID: </p>
-                <button id="student-email">Email</button>
-                <button id="github-link">GitHub</button>
+                <button id="student-email"><i class="fas fa-envelope"></i> Email</button>
+                <button id="github-link"><i class="fab fa-github"></i> GitHub</button>
             </div>
         </div>
     </div>
