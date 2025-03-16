@@ -23,11 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     await loadTechnologies();
-    const studentCodeElement = document.getElementById("student-code").textContent.trim();
-
-    if (studentCode) {
-        await loadStudentTechnologies(studentCode);
-    }
+    await loadStudentTechnologies(studentCode);
 });
 
 async function renderStudents() {
@@ -152,6 +148,10 @@ async function setupStudentDetail(studentCode) {
             document.getElementById('student-image').src = studentData.photo;
             document.getElementById('description').textContent = studentData.description;
             document.getElementById('github-link').href = studentData.github_link ? `GitHub: ${studentData.github_link}` : '';
+
+            document.getElementById("edit-profile").addEventListener("click", function () {
+                window.location.href = `edit.html?id=${studentData.code}`;
+            });
         }
     } catch (error) {
         console.error('Error obteniendo datos del estudiante para detalles:', error);
@@ -160,12 +160,13 @@ async function setupStudentDetail(studentCode) {
     await loadTechnologies(studentCode);
 }
 
+
 async function loadTechnologies() {
     try {
         const technologies = await api.getTechnologies();
         const select = document.getElementById("technology");
 
-        select.innerHTML = ""; // Limpiar opciones anteriores
+        select.innerHTML = "";
         const defaultOption = document.createElement("option");
         defaultOption.textContent = "Select a technology";
         defaultOption.value = "";
@@ -173,7 +174,7 @@ async function loadTechnologies() {
 
         technologies.forEach(tech => {
             const option = document.createElement("option");
-            option.value = tech.code; // Asegurar que `code` existe en la BD
+            option.value = tech.code;
             option.textContent = tech.name;
             select.appendChild(option);
         });
@@ -194,9 +195,6 @@ async function deleteTechHandler(event) {
     await deleteTechnology(studentCode, techCode);
 }
 
-document.getElementById("openModal").addEventListener("click", function () {
-    document.getElementById("modal").style.display = "flex";
-});
 document.getElementById("closeModal").addEventListener("click", function () {
     document.getElementById("modal").style.display = "none";
 });
@@ -208,7 +206,7 @@ document.getElementById("addTech").addEventListener("click", async function () {
 
     const technologySelect = document.getElementById("technology");
     const selectedTechnology = parseInt(technologySelect.value, 10);
-    
+
     const selectedLevelElement = document.querySelector(".star.selected");
     const level = selectedLevelElement ? parseInt(selectedLevelElement.dataset.value, 10) : 1;
 
@@ -308,7 +306,7 @@ async function editTechnology(studentCode, technologyCode) {
         try {
             await api.updateStudentTechnology(studentCode, technologyCode, parseInt(newLevel));
             alert('Nivel actualizado');
-            await loadTechnologies(studentCode);
+            await loadStudentTechnologies(studentCode);
         } catch (error) {
             console.error('Error actualizando nivel:', error);
         }
