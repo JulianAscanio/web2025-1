@@ -9,37 +9,40 @@ body {
     display: flex;
     gap: 40px;
     max-width: 1800px;
-    margin: 0 auto;
+    margin: 60px auto 0;
     padding: 40px;
     background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 .btn-back {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 10px 20px;
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    padding: 12px 24px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     background-color: #6c757d;
     color: #fff;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 1000;
 }
 
 .btn-back:hover {
     background-color: #5a6268;
+    transform: translateY(-2px);
 }
 
 .profile-card {
     flex: 1;
     background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .profile-header {
@@ -48,22 +51,23 @@ body {
 }
 
 .profile-header .avatar {
-    width: 140px;
-    height: 130px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    border: 3px solid #3a6092;
 }
 
 .profile-header h2 {
     color: #333;
     margin-bottom: 10px;
-    font-size: 30px;
+    font-size: 32px;
 }
 
 .profile-header p {
     color: #555;
     margin: 5px 0;
-    font-size: 18px;
+    font-size: 20px; 
 }
 
 .profile-info {
@@ -72,64 +76,68 @@ body {
 
 .profile-info p {
     color: #555;
-    margin: 15px 0;
+    margin: 20px 0;
     font-size: 18px;
 }
 
 .profile-info a {
     color: #3a6092;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 .profile-info a:hover {
+    color: #2d4463;
     text-decoration: underline;
 }
 
 .edit-profile {
-    padding: 12px 24px;
+    padding: 14px 28px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     background-color: #3a6092;
     color: #fff;
     cursor: pointer;
     font-size: 18px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     margin-top: 20px;
     width: 100%;
 }
 
 .edit-profile:hover {
     background-color: #2d4463;
+    transform: translateY(-2px);
 }
 
 .technologies-section {
     flex: 2;
     background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .technologies-section h3 {
     color: #333;
-    margin-bottom: 15px;
-    font-size: 20px;
+    margin-bottom: 20px;
+    font-size: 24px;
 }
 
 .add-tech-btn {
-    padding: 12px 24px;
+    padding: 14px 28px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     background-color: #5b5b5b;
     color: #fff;
     cursor: pointer;
     font-size: 18px;
-    transition: background-color 0.3s ease;
-    margin-bottom: 15px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 20px;
 }
 
 .add-tech-btn:hover {
     background-color: #999999;
+    transform: translateY(-2px);
 }
 
 .tech-table {
@@ -139,7 +147,7 @@ body {
 
 .tech-table th,
 .tech-table td {
-    padding: 12px; 
+    padding: 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
     font-size: 18px;
@@ -156,23 +164,24 @@ body {
 
 .edit-tech,
 .delete-tech {
-    padding: 8px 12px;
+    padding: 10px 16px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .edit-tech {
-    background-color: #34ae04;
+    background-color: #3a6092;
     color: #ffffff;
-    margin-right: 5px;
+    margin-right: 10px;
     font-weight: bold;
 }
 
 .edit-tech:hover {
-    background-color: #4e9931;
+    background-color: #2a4b75;
+    transform: translateY(-2px);
 }
 
 .delete-tech {
@@ -183,57 +192,60 @@ body {
 
 .delete-tech:hover {
     background-color: #c34350;
+    transform: translateY(-2px);
 }
 
 /* Modal */
 #modal {
-    display: none; /* Oculta el modal por defecto */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+    background-color: rgba(0, 0, 0, 0.5); 
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Asegura que el modal esté por encima de todo */
+    z-index: 1000;
 }
 
 .modal {
     background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 300px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 12px;
+    width: 500px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .modal h3 {
     color: #333;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    font-size: 24px; 
 }
 
 .modal label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px; 
     color: #555;
     font-weight: bold;
 }
 
 .modal select {
     width: 100%;
-    padding: 10px;
+    padding: 12px; 
     border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 16px;
 }
 
 .star-rating {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .star-rating .star {
     cursor: pointer;
-    font-size: 24px;
+    font-size: 28px; 
     color: #ccc;
     transition: color 0.3s ease;
 }
@@ -246,17 +258,17 @@ body {
 .modal-buttons {
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
+    gap: 15px;
 }
 
 .cancel-btn,
 .add-btn {
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .cancel-btn {
@@ -266,49 +278,56 @@ body {
 
 .cancel-btn:hover {
     background-color: #5a6268;
+    transform: translateY(-2px);
 }
 
 .add-btn {
-    background-color: #6b6f6c;
+    background-color: #3a6092;
     color: #fff;
 }
 
 .add-btn:hover {
-    background-color: #737573;
+    background-color: #1f3b5f;
+    transform: translateY(-2px);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .container {
-        flex-direction: column; /* Apila las columnas verticalmente */
-        gap: 20px; /* Espacio entre las secciones */
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
     }
 
     .profile-card,
     .technologies-section {
-        flex: none; /* Elimina el flex para que ocupen el ancho completo */
+        flex: none;
         width: 100%;
+        padding: 20px;
     }
 
     .profile-header .avatar {
-        width: 100px; /* Tamaño del avatar en móviles */
-        height: 100px;
+        width: 120px;
+        height: 120px;
     }
 
     .profile-header h2 {
-        font-size: 22px; /* Tamaño de fuente ajustado para móviles */
+        font-size: 24px; 
     }
 
     .profile-info p {
-        font-size: 14px; /* Tamaño de fuente ajustado para móviles */
+        font-size: 16px; 
     }
 
     .technologies-section h3 {
-        font-size: 18px; /* Tamaño de fuente ajustado para móviles */
+        font-size: 20px;
     }
 
     .tech-table th,
     .tech-table td {
-        font-size: 14px; /* Tamaño de fuente ajustado para móviles */
+        font-size: 16px;
+    }
+
+    .modal {
+        width: 90%;
     }
 }
