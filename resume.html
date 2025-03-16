@@ -3,18 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Summary</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Profile Student</title>
+    <link rel="stylesheet" href="css/resume.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h2>Student Summary</h2>
-    <div id="student-summary">
-        <p><strong>Name:</strong> <span id="summary-name"></span></p>
-        <p><strong>ID:</strong> <span id="summary-id"></span></p>
-        <p><strong>Email:</strong> <span id="summary-email"></span></p>
-        <p><strong>GitHub:</strong> <a id="summary-github"></a></p>
+    <button class="btn btn-back" onclick="location.href='index.html'"><i class="fas fa-arrow-left"></i> Back</button>
+    <div class="container" id="profile-student">
+        <header class="head">
+            <img id="student-image" src="https://via.placeholder.com/150" alt="Student Avatar">
+            <h1 id="student-name"></h1>
+            <p id="student-code">ID: </p>
+            <div>
+                <a id="student-email" href="#" class="btn"><i class="fas fa-envelope"></i> Email</a>
+                <a id="github-link" href="#" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+        </header>
+        <section class="info-student">
+            <h3 >About</h3>
+            <p id="description"></p>
+            <h3>Technical Skills</h3>
+            <div id="list-tech">
+                <ul id="tech-list" data-mode="view"></ul>
+            </div>
+            <div id="foot">
+                <h4 id="student-name"></h4>
+                <p id="student-code">Student ID: </p>
+                <button id="student-email"><i class="fas fa-envelope"></i> Email</button>
+                <button id="github-link"><i class="fab fa-github"></i> GitHub</button>
+            </div>
+        </section>
     </div>
-    <button onclick="location.href='profile.html'">View Full Profile</button>
-    <script src="summary.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
