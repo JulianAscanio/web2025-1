@@ -242,7 +242,7 @@ body {
 
 .star-rating .star:hover,
 .star-rating .star.active {
-    color: #000000;
+    color: #ecc61a;
 }
 
 .modal-buttons {

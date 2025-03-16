@@ -46,7 +46,6 @@ body {
     width: 100px; /* Imagen más pequeña */
     height: 100px;
     border-radius: 50%;
-    border: 2px solid #3a6092; /* Borde más delgado */
     margin-bottom: 10px;
 }
 
