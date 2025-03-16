@@ -201,6 +201,7 @@ async function loadTechnologies(studentId) {
             }
 
             techList.appendChild(listItem);
+            console.log(listItem);
         });
 
     } catch (error) {
