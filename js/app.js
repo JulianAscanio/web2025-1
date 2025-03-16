@@ -17,10 +17,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (document.getElementById('student-detail')) {
         await setupStudentDetail(studentCode);
     }
-    await loadTechnologies(studentCode);
 
     if (document.getElementById('profile-student')) {
         await setupStudent(studentCode);
+    }
+
+    await loadTechnologies();
+    const studentCodeElement = document.getElementById("student-code").textContent.trim();
+
+    if (studentCode) {
+        await loadStudentTechnologies(studentCode);
     }
 });
 
@@ -154,61 +160,27 @@ async function setupStudentDetail(studentCode) {
     await loadTechnologies(studentCode);
 }
 
-async function loadTechnologies(studentId) {
+async function loadTechnologies() {
     try {
-        const techList = document.getElementById("tech-list");
-        if (!techList) {
-            console.error("Elemento con id 'tech-list' no encontrado");
-            return;
-        }
+        const technologies = await api.getTechnologies();
+        const select = document.getElementById("technology");
 
-        const isEditMode = techList.getAttribute("data-mode") === "edit";
+        select.innerHTML = ""; // Limpiar opciones anteriores
+        const defaultOption = document.createElement("option");
+        defaultOption.textContent = "Select a technology";
+        defaultOption.value = "";
+        select.appendChild(defaultOption);
 
-        techList.innerHTML = ""; // Limpiar lista antes de cargar
-
-        const { data, error } = await supabase
-            .from("student_technologies")
-            .select("technology, level")
-            .eq("student_id", studentId);
-
-        if (error) throw error;
-
-        data.forEach(tech => {
-            const listItem = document.createElement("li");
-            listItem.classList.add("p-2", "border-b", "flex", "justify-between");
-
-            let stars = "★".repeat(tech.level) + "☆".repeat(5 - tech.level);
-
-            listItem.innerHTML = `
-                <span>${tech.technology}</span>
-                <span class="text-yellow-500">${stars}</span>
-            `;
-
-            // Solo mostrar botones si el contenedor tiene data-mode="edit"
-            if (isEditMode) {
-                const editButton = document.createElement("button");
-                editButton.textContent = "Editar";
-                editButton.classList.add("px-2", "py-1", "bg-blue-500", "text-white", "rounded", "ml-2");
-                editButton.onclick = () => editTechnology(tech);
-                
-                const deleteButton = document.createElement("button");
-                deleteButton.textContent = "Eliminar";
-                deleteButton.classList.add("px-2", "py-1", "bg-red-500", "text-white", "rounded", "ml-2");
-                deleteButton.onclick = () => deleteTechnology(tech);
-
-                listItem.appendChild(editButton);
-                listItem.appendChild(deleteButton);
-            }
-
-            techList.appendChild(listItem);
-            console.log(listItem);
+        technologies.forEach(tech => {
+            const option = document.createElement("option");
+            option.value = tech.code; // Asegurar que `code` existe en la BD
+            option.textContent = tech.name;
+            select.appendChild(option);
         });
-
     } catch (error) {
         console.error("Error cargando tecnologías:", error);
     }
 }
-
 
 function editTechHandler(event) {
     const studentCode = new URLSearchParams(window.location.search).get('id');
@@ -271,19 +243,26 @@ document.getElementById("addTech").addEventListener("click", async function () {
 });
 
 
+
+
 // Función para cargar las tecnologías del estudiante en la tabla
 async function loadStudentTechnologies(studentCode) {
     try {
         const studentTechnologies = await api.getStudentTechnologies(studentCode);
         const techList = document.getElementById("tech-list");
 
-        techList.innerHTML = ""; // Limpiar la tabla antes de cargar
+        techList.innerHTML = "";
 
         studentTechnologies.forEach(item => {
-            const row = document.createElement("tr");
+            // Verificar si item.technology es null o no tiene imagen
+            if (!item.technology) {
+                console.warn(`Tecnología no encontrada para el código: ${item.technology_code}`);
+                return; // Omitir este registro si está incompleto
+            }
 
+            const row = document.createElement("tr");
             row.innerHTML = `
-                <td><img src="${item.technology.image}" alt="${item.technology.name}" width="50"></td>
+                <td><img src="${item.technology.image || 'default-image.png'}" alt="${item.technology.name}" width="50"></td>
                 <td>${item.technology.name}</td>
                 <td>${"⭐".repeat(item.level)}</td>
                 <td>
@@ -340,6 +319,11 @@ async function editTechnology(studentCode, technologyCode) {
 
 async function setupStudent(studentCode) {
     try {
+        if (!studentCode) {
+            console.error("ID de estudiante no válido en setupStudent");
+            return;
+        }
+
         const studentData = await api.getStudentByCode(studentCode);
         if (studentData) {
             document.getElementById('student-name').textContent = studentData.name;
@@ -349,7 +333,8 @@ async function setupStudent(studentCode) {
             document.getElementById('description').textContent = studentData.description;
             document.getElementById('github-link').href = studentData.github_link ? `${studentData.github_link}` : '';
 
-            await loadStudentTechnologies(studentCode);
+            console.log("Llamando a loadTechnologies con studentCode:", studentCode);
+            await loadTechnologies(studentCode);
         }
     } catch (error) {
         console.error('Error obteniendo datos del estudiante para detalles:', error);
